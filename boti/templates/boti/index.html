@@ -2,7 +2,6 @@
 	<head>
 	<script>
 		function csinal(){
-			alert(1);
 			var newTable = document.createElement('table');
 			newTable.style.width = '100%';
 			newTable.style.margin = 'auto';
@@ -17,7 +16,7 @@
 						var newWrapper = document.createElement('div');
 						
 						var newPara = document.createElement('p');
-						newPara.innerHTML = {{ pizza.nev }};
+						newPara.innerHTML = "{{ pizza.nev }}";
 						
 						
 						newTd.appendChild(newWrapper);
@@ -27,8 +26,8 @@
 		}
 	</script>
 	</head>
-	<body>
-		<div id="alap" onload="csinal()">
+	<body onload="csinal()">
+		<div id="alap">
 			ASDSDSADASDASDASDASD
 		</div>
 	</body>
