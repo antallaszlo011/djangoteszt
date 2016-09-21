@@ -1,0 +1,38 @@
+{% if latest_pizza_list %}
+	<head>
+	<script>
+		function csinal(){
+			alert(1);
+			var newTable = document.createElement('table');
+			newTable.style.width = '100%';
+			newTable.style.margin = 'auto';
+			newTable.setAttribute('border', '1');
+			{% for pizza in latest_pizza_list %}
+				var newTr;
+				if( {{ forloop.counter }} % 3 == 0 ){
+					if( {{ forloop.counter }} != 0) newTable.appendChild(newTr);
+					newTr = document.createElement('tr');
+				}
+						var newTd = document.createElement('td');
+						var newWrapper = document.createElement('div');
+						
+						var newPara = document.createElement('p');
+						newPara.innerHTML = {{ pizza.nev }};
+						
+						
+						newTd.appendChild(newWrapper);
+						newTr.appendChild(newTd);
+			{% endfor %}
+			document.getElementById("alap").appendChild(newTable);
+		}
+	</script>
+	</head>
+	<body>
+		<div id="alap" onload="csinal()">
+			ASDSDSADASDASDASDASD
+		</div>
+	</body>
+	
+{% else %}
+	<p>NINCS PIZZA</p>
+{% endif %}

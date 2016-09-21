@@ -1,0 +1,9 @@
+<h1>{{ szemely.szemely_nev }}</h1>
+<ul>
+	<li>{{ szemely.tel_szam }}</li>
+	<li>{{ szemely.reg_dat.date }}</li>
+	<li>{{ szemely.reg_dat.time }}</li>
+</ul>
+<form action="{% url 'delete' szemely.id %}">
+    <input type="submit" value="Delete" />
+</form>

@@ -1,0 +1,21 @@
+{% load static %}
+
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'profilok/css/style.css' %}">
+</head>
+
+{% if latest_person_list %}
+	<table>
+	<tr>
+	{% for szemely in latest_person_list %}
+			<td><a href="{% url 'detail' szemely.id %}">{{ szemely.szemely_nev}}</a></td>
+		{% if forloop.counter == 3%}
+			</tr>
+			<tr>
+		{% endif %}
+	{% endfor %}
+		</tr>
+	</table>
+{% else %}
+	<p>Nincsenek nevek elerhetosegben.</p>
+{% endif %}
