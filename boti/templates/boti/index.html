@@ -6,21 +6,34 @@
 			newTable.style.width = '100%';
 			newTable.style.margin = 'auto';
 			newTable.setAttribute('border', '1');
+			var sorid = 0;
 			{% for pizza in latest_pizza_list %}
-				var newTr;
-				if( {{ forloop.counter }} % 3 == 0 ){
-					if( {{ forloop.counter }} != 0) newTable.appendChild(newTr);
-					newTr = document.createElement('tr');
-				}
+				if({{ forloop.counter0 }} % 3 == 0 && {{ forloop.counter0 }} != 0) sorid = sorid +1;
+					var newTr = document.createElement('tr');
+					if({{ forloop.counter0 }} % 3 == 0) newTr.id = "tr" + sorid;
+					else newTr.id = "asd" + sorid;
+					
 						var newTd = document.createElement('td');
 						var newWrapper = document.createElement('div');
 						
 						var newPara = document.createElement('p');
 						newPara.innerHTML = "{{ pizza.nev }}";
 						
+						//van newImg = document.createElement('IMG');
+						//newImg.src = "{{ pizza.kep }}".src;
+						
+						//newWrapper.appendChild(newImg);
+						newWrapper.appendChild(newPara);
 						
 						newTd.appendChild(newWrapper);
-						newTr.appendChild(newTd);
+						
+					var joId = "tr" + sorid;
+					var joTr = document.getElementById(joId);
+					
+					//EZT A SZART
+					
+					joTr.appendChild(newTd);
+				if({{ forloop.counter0 }} % 3 == 0) newTable.appendChild(joTr);
 			{% endfor %}
 			document.getElementById("alap").appendChild(newTable);
 		}
@@ -28,7 +41,7 @@
 	</head>
 	<body onload="csinal()">
 		<div id="alap">
-			ASDSDSADASDASDASDASD
+		
 		</div>
 	</body>
 	
