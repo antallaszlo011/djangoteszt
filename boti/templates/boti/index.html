@@ -2,40 +2,48 @@
 	<head>
 	<script>
 		function csinal(){
-			var newTable = document.createElement('table');
-			newTable.style.width = '100%';
-			newTable.style.margin = 'auto';
-			newTable.setAttribute('border', '1');
+			var table = document.createElement('table');
+			table.style.width = '100%';
+			table.style.margin = 'auto';
+			table.setAttribute('border', '1');
+
+			var target = document.createElement("tr");
+			target.id = "tr0";
+
+			table.appendChild(target);
+
+			var count = 0;
 			var sorid = 0;
+			var where;
+
 			{% for pizza in latest_pizza_list %}
-				if({{ forloop.counter0 }} % 3 == 0 && {{ forloop.counter0 }} != 0) sorid = sorid +1;
-					var newTr = document.createElement('tr');
-					if({{ forloop.counter0 }} % 3 == 0) newTr.id = "tr" + sorid;
-					else newTr.id = "asd" + sorid;
+
+				count++;
+				where = 0;
+				if(count == 4){
+					count = 0;
+					sorid++;
+
+					where = 1;
+					target = document.createElement("tr");
+					target.id = "tr" + sorid;
+				}
 					
-						var newTd = document.createElement('td');
-						var newWrapper = document.createElement('div');
-						
-						var newPara = document.createElement('p');
-						newPara.innerHTML = "{{ pizza.nev }}";
-						
-						//van newImg = document.createElement('IMG');
-						//newImg.src = "{{ pizza.kep }}".src;
-						
-						//newWrapper.appendChild(newImg);
-						newWrapper.appendChild(newPara);
-						
-						newTd.appendChild(newWrapper);
-						
-					var joId = "tr" + sorid;
-					var joTr = document.getElementById(joId);
-					
-					//EZT A SZART
-					
-					joTr.appendChild(newTd);
-				if({{ forloop.counter0 }} % 3 == 0) newTable.appendChild(joTr);
+				var newTd = document.createElement('td');
+				var newWrapper = document.createElement('div');
+				
+				var newPara = document.createElement('p');
+				newPara.innerHTML = "{{ pizza.nev }}";
+				newWrapper.appendChild(newPara);
+				newTd.appendChild(newWrapper);
+
+				target.appendChild(newTd);
+
+				if(where == 1)table.appendChild(target);
+
 			{% endfor %}
-			document.getElementById("alap").appendChild(newTable);
+
+			document.getElementById("alap").appendChild(table);
 		}
 	</script>
 	</head>
